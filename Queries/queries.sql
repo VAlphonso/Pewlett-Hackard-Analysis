@@ -1,5 +1,15 @@
 -- Creating tables for PH-EmployeeDB
-CCREATE TABLE departments(
+
+-- Drop table if exists
+DROP TABLE IF EXISTS departments;
+DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS dept_manager;
+DROP TABLE IF EXISTS slaries;
+DROP TABLE IF EXISTS dept_emp;
+DROP TABLE IF EXISTS titles;
+
+
+CREATE TABLE departments(
 	dept_no VARCHAR (4) NOT NULL,
 	dept_name VARCHAR(40) NOT NULL,
 	PRIMARY KEY (dept_no),
@@ -50,3 +60,39 @@ CREATE TABLE titles (
 	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
 	PRIMARY KEY (emp_no, title, from_date)
 );
+
+SELECT * FROM departments;
+SELECT * FROM employees;
+SELECT *FROM dept_manager;
+SELECT *FROM salaries;
+SELECT *FROM dept_emp;
+SELECT *FROM titles;
+
+SELECT first_name, last_name
+FROM employees
+WHERE birth_date BETWEEN '1952-01-01' AND '1955-12-31'
+
+SELECT first_name, last_name
+FROM employees
+WHERE birth_date BETWEEN '1952-01-01' AND '1952-12-31'
+
+-- Retirement eligibility
+SELECT first_name, last_name
+FROM employees
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+
+-- Number of employees retiring
+SELECT COUNT(first_name)
+FROM employees
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+
+-- Retirement eligibility
+SELECT first_name, last_name
+INTO retirement_info
+FROM employees
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+
+SELECT * FROM retirement_info;
