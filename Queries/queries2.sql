@@ -155,6 +155,7 @@ FROM retirement_info as ri
 LEFT JOIN dept_emp as de
 ON ri.emp_no = de.emp_no
 WHERE de.to_date = ('9999-01-01');
+SELECT * FROM current_emp
 
 -- Employee count by department number
 SELECT COUNT(ce.emp_no), de.dept_no
@@ -168,6 +169,7 @@ ORDER BY de.dept_no;
 SELECT * FROM salaries
 ORDER BY to_date DESC;
 
+-- 
 SELECT emp_no,
 	first_name,
 	last_name,
@@ -192,7 +194,7 @@ ON (e.emp_no = de.emp_no)
 WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
      AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
 	 AND (de.to_date = '9999-01-01');
-
+SELECT * FROM emp_info
 -------------
 
 -- List of managers per department
@@ -203,7 +205,7 @@ SELECT  dm.dept_no,
         ce.first_name,
         dm.from_date,
         dm.to_date
--- INTO manager_info
+INTO manager_info
 FROM dept_manager AS dm
     INNER JOIN departments AS d
         ON (dm.dept_no = d.dept_no)
@@ -214,9 +216,38 @@ SELECT ce.emp_no,
 ce.first_name,
 ce.last_name,
 d.dept_name
---INTO dept_info
+INTO dept_info
 FROM current_emp as ce
 INNER JOIN dept_emp AS de
 ON (ce.emp_no = de.emp_no)
 INNER JOIN departments AS d
 ON (de.dept_no = d.dept_no);
+SELECT * FROM dept_info
+
+-- Join current_emp, dept_emp, departments creating Sales Team Retire
+SELECT ce.emp_no,
+ce.first_name,
+ce.last_name,
+d.dept_name
+INTO dept_info_sales
+FROM current_emp as ce
+INNER JOIN dept_emp AS de
+ON (ce.emp_no = de.emp_no)
+INNER JOIN departments AS d
+ON (de.dept_no = d.dept_no)
+WHERE (dept_name = 'Sales');
+
+-- Current_emp, dept_emp, departments = Sales& Develpmnt Teams Mentor
+SELECT ce.emp_no,
+ce.first_name,
+ce.last_name,
+d.dept_name
+INTO dept_info_sd
+FROM current_emp as ce
+INNER JOIN dept_emp AS de
+ON (ce.emp_no = de.emp_no)
+INNER JOIN departments AS d
+ON (de.dept_no = d.dept_no)
+WHERE dept_name IN ('Sales', 'Development');
+
+
