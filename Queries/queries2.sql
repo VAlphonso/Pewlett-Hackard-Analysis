@@ -107,6 +107,7 @@ WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
 -- Check the table
 SELECT * FROM retirement_info;
+
 -- Joining departments and dept_manager tables
 SELECT departments.dept_name,
      dept_manager.emp_no,
@@ -115,6 +116,7 @@ SELECT departments.dept_name,
 FROM departments
 INNER JOIN dept_manager
 ON departments.dept_no = dept_manager.dept_no;
+
 
 -- Joining retirement_info and dept_emp tables
 SELECT retirement_info.emp_no,
@@ -153,6 +155,7 @@ FROM retirement_info as ri
 LEFT JOIN dept_emp as de
 ON ri.emp_no = de.emp_no
 WHERE de.to_date = ('9999-01-01');
+
 -- Employee count by department number
 SELECT COUNT(ce.emp_no), de.dept_no
 INTO retirement_dept
@@ -189,6 +192,8 @@ ON (e.emp_no = de.emp_no)
 WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
      AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
 	 AND (de.to_date = '9999-01-01');
+
+-------------
 
 -- List of managers per department
 SELECT  dm.dept_no,
