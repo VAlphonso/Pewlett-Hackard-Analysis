@@ -23,12 +23,13 @@ We have gathered a lot of information and synthesized it in a manner that can be
 
 There is still more research that is needed to make any further determinations for the future health of the company.  The current data that is available is insufficient to determine who, of these retiring employees, still works for the company and if they are interested in mentorship.  
 
+
 ![Retiring_Titles.png](Data/Retiring_Titles.png)
 
 - This table shows the number of people retiring per each job title
 - This is a lot of employees
 
-![Mentorship_Eligibilty.png](Data/Mentorship_Eligibilty)
+![Mentorship_Eligibilty.png](Data/Mentorship_Eligibilty.png)
 
 - This table shows the employees that are eligible for a mentorship program
 - It does not address if they are interested in mentoring a new employee nor if there are enough qualified employees to fill those vacancies.  
